@@ -4,9 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fighting Game</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <canvas></canvas>
-    <script src="main.js"></script>
+    <div class="container">
+        <div class="box">
+            <div class="player-health-wrapper">
+                <div class="player-health"></div>
+                <div id="playerHealth" class="player-health-background"></div>
+            </div>
+            <div class="timer"></div>
+            <div class="enemy-health-wrapper">
+                <div class="enemy-health"></div>
+                <div id="enemyHealth" class="enemy-health-background"></div>
+            </div>
+        </div>
+        <canvas></canvas>
+    </div>
+    <script src="js/main.js"></script>
 </body>
 </html>
