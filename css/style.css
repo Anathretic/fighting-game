@@ -50,17 +50,20 @@ canvas {
 }
 
 .timer {
-	background-color: red;
-	width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
 	height: 100px;
+	background-color: red;
 	flex-shrink: 0;
 }
 
 .enemy-health,
 .player-health {
-	background-color: yellow;
-	height: 30px;
+    height: 30px;
 	width: 100%;
+	background-color: yellow;
 }
 
 .player-health-background,
@@ -78,4 +81,16 @@ canvas {
 
 .enemy-health-background {
 	left: 0;
+}
+
+.tie {
+    position: absolute;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    color: white;
 }

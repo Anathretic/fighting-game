@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fighting Game</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <div class="container">
         <div class="box">
@@ -13,14 +15,18 @@
                 <div class="player-health"></div>
                 <div id="playerHealth" class="player-health-background"></div>
             </div>
-            <div class="timer"></div>
+            <div class="timer">
+                <p id="timer">10</p>
+            </div>
             <div class="enemy-health-wrapper">
                 <div class="enemy-health"></div>
                 <div id="enemyHealth" class="enemy-health-background"></div>
             </div>
         </div>
+        <div id="textDisplay" class="tie">Tie</div>
         <canvas></canvas>
     </div>
     <script src="js/main.js"></script>
 </body>
+
 </html>
