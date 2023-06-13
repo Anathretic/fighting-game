@@ -10,10 +10,20 @@ const gravity = 0.7
 
 const background = new Sprite({
 	position: {
-		x:0,
-		y:0
+		x: 0,
+		y: 0,
 	},
-	imageSrc: './img/background.png'
+	imageSrc: './img/background.png',
+})
+
+const shop = new Sprite({
+	position: {
+		x: 620,
+		y: 128,
+	},
+	imageSrc: './img/shop.png',
+	scale: 2.75,
+	framesMax: 6,
 })
 
 const player = new Fighter({
@@ -25,29 +35,41 @@ const player = new Fighter({
 		x: 0,
 		y: 0,
 	},
-	color: 'red',
 	offset: {
 		x: 0,
 		y: 0,
 	},
+	imageSrc: './img/samuraiMack/Idle.png',
+	scale: 2.5,
+	framesMax: 8,
+	offset: {
+		x: 100,
+		y: 155
+	}
 })
 
 player.draw()
 
 const enemy = new Fighter({
 	position: {
-		x: 400,
+		x: 860,
 		y: 100,
 	},
 	velocity: {
 		x: 0,
 		y: 0,
 	},
-	color: 'blue',
 	offset: {
 		x: 50,
 		y: 0,
 	},
+	imageSrc: './img/kenji/Idle.png',
+	scale: 2.5,
+	framesMax: 4,
+	offset: {
+		x: 215,
+		y: 170
+	}
 })
 
 enemy.draw()
@@ -76,6 +98,7 @@ function animate() {
 	c.fillStyle = 'black'
 	c.fillRect(0, 0, canvas.width, canvas.height)
 	background.update()
+	shop.update()
 	player.update()
 	enemy.update()
 
@@ -109,7 +132,7 @@ function animate() {
 
 	//end game based on health
 	if (enemy.health <= 0 || player.health <= 0) {
-		determineWinner({player, enemy, timerId})
+		determineWinner({ player, enemy, timerId })
 	}
 }
 
@@ -159,6 +182,9 @@ window.addEventListener('keyup', e => {
 		case 'a':
 			keys.a.pressed = false
 			break
+		case 's':
+			player.isAttacking = false
+			break
 	}
 	switch (e.key) {
 		case 'ArrowRight':
@@ -166,6 +192,9 @@ window.addEventListener('keyup', e => {
 			break
 		case 'ArrowLeft':
 			keys.ArrowLeft.pressed = false
+			break
+		case 'ArrowDown':
+			enemy.isAttacking = false
 			break
 	}
 })
