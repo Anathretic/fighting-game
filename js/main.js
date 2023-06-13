@@ -43,34 +43,46 @@ const player = new Fighter({
 	scale: 2.5,
 	framesMax: 8,
 	offset: {
-		x: 100,
-		y: 155
+		x: 215,
+		y: 155,
 	},
 	sprites: {
 		idle: {
 			imageSrc: './img/samuraiMack/Idle.png',
-			framesMax: 8
+			framesMax: 8,
 		},
 		run: {
 			imageSrc: './img/samuraiMack/Run.png',
-			framesMax: 8
+			framesMax: 8,
 		},
 		jump: {
 			imageSrc: './img/samuraiMack/Jump.png',
-			framesMax: 2
+			framesMax: 2,
 		},
 		fall: {
 			imageSrc: './img/samuraiMack/Fall.png',
-			framesMax: 2
+			framesMax: 2,
+		},
+		attack1: {
+			imageSrc: './img/samuraiMack/Attack1.png',
+			framesMax: 6,
 		}
-	}
+	},
+	attackBox: {
+		offset: {
+			x: 100,
+			y: 50,
+		},
+		width: 160,
+		height: 50,
+	},
 })
 
 player.draw()
 
 const enemy = new Fighter({
 	position: {
-		x: 860,
+		x: 400,
 		y: 100,
 	},
 	velocity: {
@@ -78,7 +90,7 @@ const enemy = new Fighter({
 		y: 0,
 	},
 	offset: {
-		x: 50,
+		x: -50,
 		y: 0,
 	},
 	imageSrc: './img/kenji/Idle.png',
@@ -86,26 +98,38 @@ const enemy = new Fighter({
 	framesMax: 4,
 	offset: {
 		x: 215,
-		y: 170
+		y: 170,
 	},
 	sprites: {
 		idle: {
 			imageSrc: './img/kenji/Idle.png',
-			framesMax: 4
+			framesMax: 4,
 		},
 		run: {
 			imageSrc: './img/kenji/Run.png',
-			framesMax: 8
+			framesMax: 8,
 		},
 		jump: {
 			imageSrc: './img/kenji/Jump.png',
-			framesMax: 2
+			framesMax: 2,
 		},
 		fall: {
 			imageSrc: './img/kenji/Fall.png',
-			framesMax: 2
+			framesMax: 2,
+		},
+		attack1: {
+			imageSrc: './img/kenji/Attack1.png',
+			framesMax: 4,
 		}
-	}
+	},
+	attackBox: {
+		offset: {
+			x: -170,
+			y: 50,
+		},
+		width: 170,
+		height: 50,
+	},
 })
 
 enemy.draw()
@@ -151,8 +175,8 @@ function animate() {
 	} else {
 		player.switchSprite('idle')
 	}
-	
-	if(player.velocity.y < 0) {
+
+	if (player.velocity.y < 0) {
 		player.switchSprite('jump')
 	} else if (player.velocity.y > 0) {
 		player.switchSprite('fall')
@@ -167,23 +191,35 @@ function animate() {
 	} else {
 		enemy.switchSprite('idle')
 	}
-	
-	if(enemy.velocity.y < 0) {
+
+	if (enemy.velocity.y < 0) {
 		enemy.switchSprite('jump')
 	} else if (enemy.velocity.y > 0) {
 		enemy.switchSprite('fall')
 	}
 	//detect for collision
-	if (rectangularCollision({ rectangle1: player, rectangle2: enemy }) && player.isAttacking) {
+	if (rectangularCollision({ rectangle1: player, rectangle2: enemy }) && player.isAttacking && player.framesCurrent === 4) {
 		player.isAttacking = false
 		enemy.health -= 20
 		document.querySelector('#enemyHealth').style.width = enemy.health + '%'
 	}
 
-	if (rectangularCollision({ rectangle1: enemy, rectangle2: player }) && enemy.isAttacking) {
+	//if player misses
+
+	if(player.isAttacking && player.framesCurrent === 4) {
+		player.isAttacking = false
+	}
+
+	if (rectangularCollision({ rectangle1: enemy, rectangle2: player }) && enemy.isAttacking && enemy.framesCurrent === 2) {
 		enemy.isAttacking = false
 		player.health -= 20
 		document.querySelector('#playerHealth').style.width = player.health + '%'
+	}
+
+	//if enemy misses
+
+	if(enemy.isAttacking && enemy.framesCurrent === 2) {
+		enemy.isAttacking = false
 	}
 
 	//end game based on health
@@ -209,7 +245,7 @@ window.addEventListener('keydown', e => {
 			player.velocity.y = -20
 			break
 		case 's':
-			player.isAttacking = true
+			player.attack()
 			break
 		//enemy
 		case 'ArrowRight':
@@ -224,7 +260,7 @@ window.addEventListener('keydown', e => {
 			enemy.velocity.y = -20
 			break
 		case 'ArrowDown':
-			enemy.isAttacking = true
+			enemy.attack()
 			break
 	}
 })
@@ -238,9 +274,6 @@ window.addEventListener('keyup', e => {
 		case 'a':
 			keys.a.pressed = false
 			break
-		case 's':
-			player.isAttacking = false
-			break
 	}
 	switch (e.key) {
 		case 'ArrowRight':
@@ -248,9 +281,6 @@ window.addEventListener('keyup', e => {
 			break
 		case 'ArrowLeft':
 			keys.ArrowLeft.pressed = false
-			break
-		case 'ArrowDown':
-			enemy.isAttacking = false
 			break
 	}
 })
