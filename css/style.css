@@ -16,6 +16,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	overflow: hidden;
+	font-family: 'Press Start 2P', cursive;
 }
 
 .container {
@@ -40,13 +41,20 @@ canvas {
 .player-health-wrapper,
 .enemy-health-wrapper {
 	position: relative;
-	height: 30px;
 	width: 100%;
+	display: flex;
+	justify-content: center;
+	border: 4px solid white;
 }
 
 .player-health-wrapper {
 	display: flex;
 	justify-content: flex-end;
+	border-right: none;
+}
+
+.enemy-health-wrapper {
+	border-left: none;
 }
 
 .timer {
@@ -54,8 +62,10 @@ canvas {
     justify-content: center;
     align-items: center;
     width: 100px;
-	height: 100px;
-	background-color: red;
+	height: 50px;
+	background-color: #333;
+	color: #fff;
+	border: 4px solid white;
 	flex-shrink: 0;
 }
 
@@ -63,7 +73,7 @@ canvas {
 .player-health {
     height: 30px;
 	width: 100%;
-	background-color: yellow;
+	background-color: rgba(231, 29, 29, 0.685);
 }
 
 .player-health-background,
@@ -72,7 +82,7 @@ canvas {
 	top: 0;
 	right: 0;
 	bottom: 0;
-	background-color: blue;
+	background-color: #818CF8;
 }
 
 .player-health-background {
