@@ -28,7 +28,7 @@ const shop = new Sprite({
 
 const player = new Fighter({
 	position: {
-		x: 0,
+		x: 100,
 		y: 0,
 	},
 	velocity: {
@@ -73,7 +73,7 @@ const player = new Fighter({
 			x: 100,
 			y: 50,
 		},
-		width: 160,
+		width: 150,
 		height: 50,
 	},
 })
@@ -82,7 +82,7 @@ player.draw()
 
 const enemy = new Fighter({
 	position: {
-		x: 400,
+		x: 860,
 		y: 100,
 	},
 	velocity: {
@@ -200,7 +200,7 @@ function animate() {
 	//detect for collision
 	if (rectangularCollision({ rectangle1: player, rectangle2: enemy }) && player.isAttacking && player.framesCurrent === 4) {
 		player.isAttacking = false
-		enemy.health -= 20
+		enemy.health -= 10
 		document.querySelector('#enemyHealth').style.width = enemy.health + '%'
 	}
 
@@ -212,7 +212,7 @@ function animate() {
 
 	if (rectangularCollision({ rectangle1: enemy, rectangle2: player }) && enemy.isAttacking && enemy.framesCurrent === 2) {
 		enemy.isAttacking = false
-		player.health -= 20
+		player.health -= 10
 		document.querySelector('#playerHealth').style.width = player.health + '%'
 	}
 
