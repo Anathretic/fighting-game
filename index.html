@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fighting Game</title>
+    <title>Fighting Game - Konrad Wojtyło</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -16,6 +16,7 @@
     <div class="container">
         <div class="box">
             <div class="player-health-wrapper">
+                <div class="player-health-label">Gracz 1</div>
                 <div class="player-health"></div>
                 <div id="playerHealth" class="player-health-background"></div>
             </div>
@@ -23,14 +24,30 @@
                 <p id="timer">10</p>
             </div>
             <div class="enemy-health-wrapper">
+                <div class="enemy-health-label">Gracz 2</div>
                 <div class="enemy-health"></div>
                 <div id="enemyHealth" class="enemy-health-background"></div>
             </div>
         </div>
-        <div id="textDisplay" class="tie">Tie</div>
+        <div id="textDisplay" class="tie">Remis</div>
         <canvas></canvas>
+        <div class="restart-btn-box">
+            <button id="restartBtn" class="restart-btn">
+                Restartuj grę
+            </button>
+        </div>
+        <div class="game-instruction">
+            <p>
+                Gracz 1: W – skok, A – lewo, D – prawo, S – atak
+            </p>
+            <p>
+                Gracz 2: ↑ – skok, ← – lewo, → – prawo, ↓ – atak
+            </p>
+        </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/gsap.min.js" integrity="sha512-qF6akR/fsZAB4Co1QDDnUXWnaQseLGXoniuSuSlPQK6+aWhlMZcHzkasCSlnWoe+TJuudlka1/IQ01Dnhgq95g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/gsap.min.js"
+        integrity="sha512-qF6akR/fsZAB4Co1QDDnUXWnaQseLGXoniuSuSlPQK6+aWhlMZcHzkasCSlnWoe+TJuudlka1/IQ01Dnhgq95g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="js/utilities.js"></script>
     <script src="js/classes.js"></script>
     <script src="js/main.js"></script>
